@@ -1,0 +1,12 @@
+✔ trocar o checked pra radio (nunca seta array) @done(22-10-28 15:16)
+✔ passar a lista de cores pro radio @done(22-10-28 15:16)
+✔ fazer header @done(22-11-04 09:03)
+✘ trocar pra styled components @cancelled(22-11-01 10:45)
+✔ fazer um search @done(22-11-03 21:40)
+✔ comentar o código @done(22-11-09 10:06)
+
+----
+☐ 1 - Adicionar rotas e migrar a tela inicial para um file Home.tsx (a rota desse file vai ser a "/")
+☐ 2 - Desenvolver Loading da aplicação
+☐ 3 - Ajustar css atual da página
+☐ 4 - Criar nova página, para quando o usuário clicar em um pokemon, exibir todas as informações dele

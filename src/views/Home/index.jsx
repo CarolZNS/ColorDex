@@ -76,7 +76,6 @@ export default function App() {
     setLoading(true);
     const getPokemonData = async (response) => {
       const promises = response.data.pokemon_species.map(async (pokemon) => {
-        setLoading(true);
         const sliptedUrl = pokemon.url.split("/");
         return axios.get(`https://pokeapi.co/api/v2/pokemon/${sliptedUrl[6]}`);
       });
@@ -84,13 +83,12 @@ export default function App() {
       const adaptedPokemonList = pokemonList.map(pokemonAdapter);
       const orderedPokemonList = _orderBy(adaptedPokemonList, "id");
       setPokemons(orderedPokemonList);
-      setLoading(false);
     };
     axios
       .get(`https://pokeapi.co/api/v2/pokemon-color/${selectedColor}`)
-      .then(setLoading(true))
       .then((response) => {
-        getPokemonData(response);
+        getPokemonData(response)
+        .then (setLoading(false));
       });
   }, [selectedColor]);
 

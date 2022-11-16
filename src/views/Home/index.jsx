@@ -50,6 +50,7 @@ export default function App() {
   const [colorList, setColorList] = useState([]);
   const [selectedColor, setSelectedColor] = useState(null);
   const [search, setSearch] = useState("");
+  const [loading, setLoading] = useState(false);
 
   //Tentativa de limpar seleção do radio, mas falhei, não sei pq.
   const selectColor = (colorId) => {
@@ -72,6 +73,7 @@ export default function App() {
     if (!selectedColor) {
       return;
     }
+    setLoading(true);
     const getPokemonData = async (response) => {
       const promises = response.data.pokemon_species.map(async (pokemon) => {
         const sliptedUrl = pokemon.url.split("/");
@@ -85,7 +87,8 @@ export default function App() {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon-color/${selectedColor}`)
       .then((response) => {
-        getPokemonData(response);
+        getPokemonData(response)
+        .then (setLoading(false));
       });
   }, [selectedColor]);
 
@@ -114,13 +117,19 @@ export default function App() {
           setSearch(event.target.value);
         }}
       />
-      <ul>
-        {filterSearch.map((pokemon) => (
-          <li key={pokemon.id}>
-            <Card data={pokemon} />
-          </li>
-        ))}
-      </ul>
+      <div>
+        {loading ? (
+          <h1>LOADING</h1>
+        ) : (
+          <ul>
+            {filterSearch.map((pokemon) => (
+              <li key={pokemon.id}>
+                <Card data={pokemon} />
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
     </div>
   );
 }

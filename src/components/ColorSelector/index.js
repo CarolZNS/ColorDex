@@ -5,7 +5,9 @@ export default function ColorSelector(props) {
     props.onChange(props.value)
   }  
   return (
-    <RadioSelector>
+    <RadioSelector
+    checked={props.checked}
+    >
       <Input
         type="radio"
         id={props.label}

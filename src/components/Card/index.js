@@ -8,7 +8,7 @@ export default function Card(props) {
       <S.Name>{props.data.name}</S.Name>
       <S.Types>
         {props.data.types &&
-          props.data.types.map((type) => <S.Type>{type}</S.Type>)}
+          props.data.types.map((type) => <S.Type key={type}>{type}</S.Type>)}
       </S.Types>
     </S.Card>
   );

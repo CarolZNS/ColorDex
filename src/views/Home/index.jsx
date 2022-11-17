@@ -59,6 +59,8 @@ export default function App() {
     if (selectedColor === colorId) {
       return setSelectedColor(null);
     }
+    setLoading(true);
+    setPokemons([])
     setSelectedColor(colorId);
   };
 

@@ -10,19 +10,13 @@ export const RadioSelector = styled.div`
   &:hover {
     background-color: #ffe6e2;
   }
+  background-color: ${props => props.checked ? "#ffe6e2" : "none"};
 `;
 export const Input = styled.input.attrs({ type: "radio" })`
   width: 1.3em;
   height: 1.3em;
   accent-color: tomato;
-  &:checked {
-    ${RadioSelector}{
-      background-color: #ffe6e2
-    }
-  };
 `;
-
-
 export const Label = styled.label`
   text-transform: capitalize;
 `;

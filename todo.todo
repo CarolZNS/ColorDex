@@ -8,5 +8,5 @@
 ----
 ✔ 1 - Adicionar rotas e migrar a tela inicial para um file Home.tsx (a rota desse file vai ser a "/") @done(22-11-09 16:35)
 ✔ 2 - Desenvolver Loading da aplicação @done(22-11-10 16:10)
-☐ 3 - Ajustar css atual da página
+3 - Ajustar css atual da página
 ☐ 4 - Criar nova página, para quando o usuário clicar em um pokemon, exibir todas as informações dele

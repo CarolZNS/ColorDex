@@ -1,13 +1,15 @@
+import * as S from './styles'
+
 export default function Card(props) {
   return (
-    <div className="card">
-      <img src={props.data.sprite} alt="pokemon" />
-      <p className="id">#{props.data.id}</p>
-      <h3 className="name">{props.data.name}</h3>
-      <div className="types">
+    <S.Card color={props.color}>
+      <S.Img src={props.data.sprite} alt={`pokemon ${props.data.name}`} />
+      <S.Id>#{props.data.id}</S.Id>
+      <S.Name>{props.data.name}</S.Name>
+      <S.Types>
         {props.data.types &&
-          props.data.types.map((type) => <span className="type">{type}</span>)}
-      </div>
-    </div>
+          props.data.types.map((type) => <S.Type>{type}</S.Type>)}
+      </S.Types>
+    </S.Card>
   );
 }

@@ -1,10 +1,12 @@
+import { Label, Input, RadioSelector } from './styles'
+
 export default function ColorSelector(props) {
     const handleChange = () =>{
     props.onChange(props.value)
   }  
   return (
-    <div className="radio-selector">
-      <input
+    <RadioSelector>
+      <Input
         type="radio"
         id={props.label}
         name='color'
@@ -12,7 +14,7 @@ export default function ColorSelector(props) {
         checked={props.checked}
         onChange={handleChange}
       />
-      <label htmlFor={props.name}>{props.label}</label>
-    </div>
+      <Label htmlFor={props.name}>{props.label}</Label>
+    </RadioSelector>
   );
 }

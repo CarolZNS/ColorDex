@@ -15,7 +15,7 @@ export const RadioSelector = styled.div`
 export const Input = styled.input.attrs({ type: "radio" })`
   width: 1.3em;
   height: 1.3em;
-  accent-color: tomato;
+  accent-color: #ff6347;
 `;
 export const Label = styled.label`
   text-transform: capitalize;

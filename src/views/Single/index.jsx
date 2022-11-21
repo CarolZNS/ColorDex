@@ -43,6 +43,7 @@ const pokemonAdapter = (pokemon) => {
   };
 };
 
+
 export default function App() {
   //Pega o Id da rota e salva para ser usado para fazer o pedido à api
   let { id } = useParams();
@@ -54,16 +55,14 @@ export default function App() {
     setLoading(true)
     axios.get(`https://pokeapi.co/api/v2/pokemon/${id}`).then((response) => {
       const adaptedData = pokemonAdapter(response);
-      setPokemonData(adaptedData)
+      axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then((response)=>{
+        const getColorName = response.data.color.name
+        setPokemonData({...adaptedData, color: getColorName})
       setLoading(false)
+      });
+      
     });
   }, [id]);
-  // useEffect(() =>{
-  //   axios.get(`https://pokeapi.co/api/v2/pokemon-species/${id}`).then((response)=>{
-  //     const getColor = response.data.color.name;
-  //     setPokemonColor(getColor);
-  //   })
-  // }, [])
 
   console.log(pokemonData)
   return (
@@ -72,7 +71,7 @@ export default function App() {
       {loading ? 
       (<h1>Catching Pokemon</h1>) : 
       <S.Container>
-        <S.UniqueCard>
+        <S.UniqueCard color={pokemonData.color}>
           <S.Img src={pokemonData.sprite} alt="pokemon x" />
           <S.Id>{pokemonData.id}</S.Id>
           <S.Name>{pokemonData.name}</S.Name>

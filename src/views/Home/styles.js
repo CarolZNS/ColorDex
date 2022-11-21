@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledApp = styled.div`
-  @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;700;800;900;1000&display=swap'); 
   font-family: sans-serif;
   text-align: center;
   box-sizing: border-box;

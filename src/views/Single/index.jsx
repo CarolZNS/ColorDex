@@ -8,22 +8,6 @@ import StatusList from "../../components/StatusList";
 import TypingList from "../../components/TypingList";
 import { useParams } from "react-router-dom";
 
-const mockinglist = {
-  id: 37,
-  name: "vulpix",
-  sprite:
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/37.png",
-  stats: [
-    { statusName: "hp", value: 38, ev: 0 },
-    { statusName: "attack", value: 41, ev: 0 },
-    { statusName: "defense", value: 40, ev: 0 },
-    { statusName: "sp. atk", value: 50, ev: 0 },
-    { statusName: "sp. def", value: 65, ev: 0 },
-    { statusName: "speed", value: 65, ev: 1 },
-  ],
-  types: ["fire", "ice"],
-};
-
 //Adaptadores da requisição
 const typesAdapter = (type) => {
   return type.type.name;
@@ -65,7 +49,6 @@ export default function App() {
   let { id } = useParams();
 
   const [pokemonData, setPokemonData] = useState({});
-  const [pokemonColor, setPokemonColor] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {

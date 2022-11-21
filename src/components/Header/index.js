@@ -1,7 +1,9 @@
+import * as S from './styles';
+
 export default function Card(props) {
     return (
-      <div className="header">
-        <h3>ColorDex</h3>
-      </div>
+      <S.Header>
+        <S.Title>ColorDex</S.Title>
+      </S.Header>
     );
   }

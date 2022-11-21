@@ -6,6 +6,7 @@ import _get from "lodash/get";
 import _orderBy from "lodash/orderBy";
 import GroupedColorSelector from "../../components/GroupedColorSelector";
 import Header from "../../components/Header";
+import { GroupColors, StyledInput, StyledUl, StyledApp } from "./styles";
 
 //Adaptadores dos dados da API, de forma a facilitar a leitura de dados
 const typesAdapter = (type) => {
@@ -44,6 +45,7 @@ const colorAdapter = (color) => {
   };
 };
 
+
 //App e states
 export default function App() {
   const [pokemons, setPokemons] = useState([]);
@@ -57,6 +59,8 @@ export default function App() {
     if (selectedColor === colorId) {
       return setSelectedColor(null);
     }
+    setLoading(true);
+    setPokemons([])
     setSelectedColor(colorId);
   };
 
@@ -98,20 +102,21 @@ export default function App() {
     return el.name.match(tlc);
   });
 
+  
   //Renderização dos componentes
   return (
-    <div className="App">
+    <StyledApp>
       <Header />
-      <div className="group-colors">
+      <GroupColors>
         <GroupedColorSelector
           colors={colorList}
           onChange={selectColor}
           value={selectedColor}
         />
-      </div>
-      <input
+      </GroupColors>
+      <StyledInput
         type="search"
-        placeholder="Buscar por nome"
+        placeholder="Search by name"
         value={search}
         onChange={(event) => {
           setSearch(event.target.value);
@@ -121,15 +126,15 @@ export default function App() {
         {loading ? (
           <h1>LOADING</h1>
         ) : (
-          <ul>
+          <StyledUl>
             {filterSearch.map((pokemon) => (
               <li key={pokemon.id}>
-                <Card data={pokemon} />
+                <Card data={pokemon} color={selectedColor}/>
               </li>
             ))}
-          </ul>
+          </StyledUl>
         )}
       </div>
-    </div>
+    </StyledApp>
   );
 }

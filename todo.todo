@@ -8,5 +8,9 @@
 ----
 ✔ 1 - Adicionar rotas e migrar a tela inicial para um file Home.tsx (a rota desse file vai ser a "/") @done(22-11-09 16:35)
 ✔ 2 - Desenvolver Loading da aplicação @done(22-11-10 16:10)
-3 - Ajustar css atual da página
-☐ 4 - Criar nova página, para quando o usuário clicar em um pokemon, exibir todas as informações dele
+✔ 3 - Ajustar css atual da página @done(22-11-17 19:20)
+✔ 4 - Criar nova página, para quando o usuário clicar em um pokemon, exibir todas as informações dele @done(22-11-21 15:04)
+
+---
+1- passar o id para a url
+2- recuperar o id da url na página do card unitário

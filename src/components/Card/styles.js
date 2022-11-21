@@ -15,7 +15,8 @@ export const Card = styled.div`
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-  ${({color})=>getBgColor(color)}
+  ${({color})=>getBgColor(color)};
+  cursor: pointer;
 `
 export const Img = styled.img`
   width: 61%;

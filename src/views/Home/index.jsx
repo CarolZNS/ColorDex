@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "../../styles.css";
 import Card from "../../components/Card";
 import _get from "lodash/get";
@@ -102,7 +103,10 @@ export default function App() {
     return el.name.match(tlc);
   });
 
-  
+  const navigate = useNavigate();
+  const handleCardClick = (id) => {
+    navigate(`/pokemon/${id}`)
+  }
   //Renderização dos componentes
   return (
     <StyledApp>
@@ -129,7 +133,7 @@ export default function App() {
           <StyledUl>
             {filterSearch.map((pokemon) => (
               <li key={pokemon.id}>
-                <Card data={pokemon} color={selectedColor}/>
+                <Card data={pokemon} color={selectedColor} onClick={handleCardClick}/>
               </li>
             ))}
           </StyledUl>

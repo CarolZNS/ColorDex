@@ -1,6 +1,5 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import "../../styles.css";
 import _get from "lodash/get";
 import Header from "../../components/Header";
 import * as S from "./styles";

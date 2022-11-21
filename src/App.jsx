@@ -1,4 +1,3 @@
-import "./styles.css";
 import { BrowserRouter } from "react-router-dom";
 import Routers from "./routes/routes";
 

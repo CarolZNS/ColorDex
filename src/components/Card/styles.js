@@ -1,8 +1,8 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 const getBgColor = (color) => {
   const colors = ["#898989", "#a5afde", "#c1b1a3", "#d0d0d0", "#b5f6b8", "#f7bde0", "#c2a5de", "#f6a5a5", "transparent", "#fff4b9"];
-  return `background-color: ${colors[color-1]}`
+  return css`background-color: ${colors[color-1]};`
 }
 
 export const Card = styled.div`

@@ -1,7 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import "../../styles.css";
 import Card from "../../components/Card";
 import _get from "lodash/get";
 import _orderBy from "lodash/orderBy";

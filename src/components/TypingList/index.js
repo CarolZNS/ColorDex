@@ -1,9 +1,9 @@
-import { Type, TypeChip } from "./styles";
+import { TypeChip, TypeName } from "./styles";
 
 export default function TypingList(props) {
     return(
         <TypeChip type={props.type}>
-            <Type type={props.type}>{props.type}</Type>
+            <TypeName type={props.type}>{props.type}</TypeName>
         </TypeChip>
     )
 }

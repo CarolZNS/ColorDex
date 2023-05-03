@@ -27,7 +27,7 @@ export const TypeChip  = styled.div`
     padding: 0.3rem 1.5rem;
     border-radius: 1.5rem;
 `
-export const Type = styled.span`
+export const TypeName = styled.span`
   text-transform: capitalize;
   font-size: 1em;
   color: ${({ type }) => (type === 'dark')? "#fff" : "#000"};

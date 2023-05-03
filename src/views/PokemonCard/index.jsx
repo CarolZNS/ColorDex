@@ -3,10 +3,10 @@ import { useEffect, useState } from "react";
 import _get from "lodash/get";
 import Header from "../../components/Header";
 import * as S from "./styles";
-import StatusList from "../../components/StatusList";
 import TypingList from "../../components/TypingList";
 import { useNavigate, useParams } from "react-router-dom";
 import RegionSelectList from "../../components/RegionSelectList";
+import StatusGrid from "../../components/StatusGrid";
 
 //Adaptadores da requisição
 const typesAdapter = (type) => {
@@ -72,7 +72,6 @@ export default function App() {
     });
   }, [id]);
 
-
   useEffect(() => {
     setLoading(true);
     axios.get("https://pokeapi.co/api/v2/generation").then((response) => {
@@ -100,10 +99,10 @@ export default function App() {
     setLoading(false);
   }, []);
 
-  const navigate = useNavigate()
-  const handleChange = (id)=>{
-    navigate(`/pokemon/${id}`)
-  }
+  const navigate = useNavigate();
+  const handleChange = (id) => {
+    navigate(`/pokemon/${id}`);
+  };
 
   return (
     <div>
@@ -112,8 +111,10 @@ export default function App() {
         <h1>Catching Pokemon</h1>
       ) : (
         <S.Container>
-          <RegionSelectList regions={regions} onChange={handleChange}/>
-          {pokemonData.color === "unknown" ? <S.Error>{errorMessage}</S.Error> : null}
+          <RegionSelectList regions={regions} onChange={handleChange} />
+          {pokemonData.color === "unknown" ? (
+            <S.Error>{errorMessage}</S.Error>
+          ) : null}
           <S.PokemonCard color={pokemonData.color}>
             <S.Img src={pokemonData.sprite} alt="pokemon x" />
             <S.Id>{pokemonData.id}</S.Id>
@@ -130,7 +131,7 @@ export default function App() {
             <S.StatusTable>
               {pokemonData.stats &&
                 pokemonData.stats.map((s) => (
-                  <StatusList
+                  <StatusGrid
                     name={s.statusName}
                     value={s.value}
                     key={s.statusName}

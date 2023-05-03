@@ -11,6 +11,10 @@ export const RadioSelector = styled.div`
     background-color: #ffe6e2;
   }
   background-color: ${props => props.checked ? "#ffe6e2" : "none"};
+  @media(max-width:550px){
+    gap: 3px;
+    padding: 0.2em 0.4em;
+  }
 `;
 export const Input = styled.input.attrs({ type: "radio" })`
   width: 1.3em;

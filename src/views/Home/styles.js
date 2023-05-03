@@ -1,18 +1,19 @@
 import styled from "styled-components";
 
 export const StyledApp = styled.div`
-  font-family: sans-serif;
-  text-align: center;
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+@media(max-width:550px){
+  padding: 2px;
+}
 `
-
 export const GroupColors = styled.div`
   display: flex;
+  flex-wrap: wrap;
   padding: 10px;
   justify-content: center;
   gap: 3px;
+  @media(max-width:550px){
+    gap: 2px;
+  }
 `;
 export const StyledInput = styled.input`
   height: fit-content;
@@ -25,6 +26,12 @@ export const StyledInput = styled.input`
   outline: none;
   border-radius: 25px;
   margin-bottom: 20px;
+  @media(max-width:550px){
+    width: 90%;
+    font-size: 0.7rem;
+    letter-spacing: 1px;
+    border-radius: 10px;
+  }
 `;
 export const StyledUl = styled.ul`
   display: flex;
@@ -34,4 +41,7 @@ export const StyledUl = styled.ul`
   justify-content: center;
   gap: 50px;
   margin-bottom: 30px;
+  @media(max-width:550px){
+    gap: 10px;
+  }
 `;

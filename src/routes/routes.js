@@ -2,13 +2,13 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 
 import Home from '../views/Home';
-import Single from '../views/Single';
+import UniqueCard from '../views/PokemonCard';
 
 const Routers = () => {
     return (
         <Routes>
             <Route element={<Home />} path='/'/>
-            <Route element={<Single />} path='/pokemon/:id'/>
+            <Route element={<UniqueCard />} path='/pokemon/:id'/>
         </Routes>
     );
 };

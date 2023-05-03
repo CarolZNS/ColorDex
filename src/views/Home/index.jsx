@@ -2,7 +2,6 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Card from "../../components/Card";
-import _get from "lodash/get";
 import _orderBy from "lodash/orderBy";
 import GroupedColorSelector from "../../components/GroupedColorSelector";
 import Header from "../../components/Header";
@@ -12,9 +11,7 @@ import { GroupColors, StyledInput, StyledUl, StyledApp } from "./styles";
 const typesAdapter = (type) => {
   return type.type.name;
 };
-const spriteAdapter = (sprite) => {
-  return _get(sprite, "other.official-artwork.front_default", "");
-};
+
 const statsAdapter = (stat) => {
   return {
     statusName: stat.stat.name,
@@ -25,7 +22,7 @@ const statsAdapter = (stat) => {
 const pokemonAdapter = (pokemon) => {
   const pokemonData = pokemon.data;
   const types = pokemonData.types.map(typesAdapter);
-  const sprite = spriteAdapter(pokemonData.sprites);
+  const sprite = pokemonData.sprites.front_default;
   const stats = pokemonData.stats.map(statsAdapter);
   return {
     name: pokemonData.name,
@@ -45,14 +42,14 @@ const colorAdapter = (color) => {
   };
 };
 
-
 //App e states
-export default function App() {
+export default function Home() {
   const [pokemons, setPokemons] = useState([]);
   const [colorList, setColorList] = useState([]);
   const [selectedColor, setSelectedColor] = useState(null);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(false);
+  // const [availableTypes, setAvailableTypes] = useState([]);
 
   //Tentativa de limpar seleção do radio, mas falhei, não sei pq.
   const selectColor = (colorId) => {
@@ -60,7 +57,7 @@ export default function App() {
       return setSelectedColor(null);
     }
     setLoading(true);
-    setPokemons([])
+    setPokemons([]);
     setSelectedColor(colorId);
   };
 
@@ -84,6 +81,7 @@ export default function App() {
         return axios.get(`https://pokeapi.co/api/v2/pokemon/${sliptedUrl[6]}`);
       });
       const pokemonList = await Promise.all(promises);
+
       const adaptedPokemonList = pokemonList.map(pokemonAdapter);
       const orderedPokemonList = _orderBy(adaptedPokemonList, "id");
       setPokemons(orderedPokemonList);
@@ -91,24 +89,33 @@ export default function App() {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon-color/${selectedColor}`)
       .then((response) => {
-        getPokemonData(response)
-        .then (setLoading(false));
+        getPokemonData(response).then(setLoading(false));
       });
   }, [selectedColor]);
+
+  // useEffect(() => {
+  //   setLoading(true)
+  //   const typesSet = new Set(
+  //     pokemons.flatMap((pokemon) => pokemon.types.map((type) => type))
+  //   );
+  //   const odereredTypes = _orderBy([...typesSet]);
+  //   setAvailableTypes(odereredTypes);
+  //   setLoading(false)
+  // }, [pokemons]);
 
   //Aplicação do filtro de pesquisa
   const filterSearch = pokemons.filter((el) => {
     const tlc = search.toLowerCase();
-    return el.name.match(tlc);
+    return el.name.match(tlc) || el.types.some(type=>type.match(tlc));
   });
 
   const navigate = useNavigate();
   const handleCardClick = (id) => {
-    navigate(`/pokemon/${id}`)
-  }
+    navigate(`/pokemon/${id}`);
+  };
   //Renderização dos componentes
   return (
-    <StyledApp>
+    <div>
       <Header />
       <GroupColors>
         <GroupedColorSelector
@@ -119,25 +126,35 @@ export default function App() {
       </GroupColors>
       <StyledInput
         type="search"
-        placeholder="Search by name"
+        placeholder="Search by name or type"
         value={search}
         onChange={(event) => {
           setSearch(event.target.value);
         }}
       />
-      <div>
+    {/* Adicionar no futuro */}
+      {/* <div>
+        {availableTypes.map((type) => (
+          <span key={type}>{type} </span>
+        ))}
+      </div> */}
+      <StyledApp>
         {loading ? (
           <h1>LOADING</h1>
         ) : (
           <StyledUl>
             {filterSearch.map((pokemon) => (
               <li key={pokemon.id}>
-                <Card data={pokemon} color={selectedColor} onClick={handleCardClick}/>
+                <Card
+                  data={pokemon}
+                  color={selectedColor}
+                  onClick={handleCardClick}
+                />
               </li>
             ))}
           </StyledUl>
         )}
-      </div>
-    </StyledApp>
+      </StyledApp>
+    </div>
   );
 }

@@ -17,10 +17,15 @@ export const Card = styled.div`
   justify-content: space-between;
   ${({color})=>getBgColor(color)};
   cursor: pointer;
+  @media(max-width:550px){
+    width: 150px;
+    height: 150px;
+    justify-content: center;
+    padding: 5px 2px;
+  }
 `
 export const Img = styled.img`
-  width: 61%;
-  height: 61%;
+  
 `
 export const Types = styled.div`
   border-radius: 3px;
@@ -33,14 +38,24 @@ export const Types = styled.div`
   align-items: center;
   padding: 0px;
   gap: 9px;
+  @media(max-width:550px){
+    gap: 3px;
+    font-size: 12px;
+  }
 `
 export  const Id = styled.p`
   font-weight: 400;
   font-size: 14px;
   color: #212121;
+  @media(max-width:550px){
+    font-size: 0.3em;
+  }
 `
 export const Name = styled.h3`
   text-transform: capitalize;
+  @media(max-width:550px){
+    font-size: 0.8em;
+  }
 `
 export const Type = styled.span`
   padding: 3px 17px;
@@ -48,4 +63,7 @@ export const Type = styled.span`
   background-color: rgba(150, 143, 143, 0.5);
   mix-blend-mode: multiply;
   color: #212121;
+  @media(max-width:550px){
+    padding: 0 8px;
+  }
 `
